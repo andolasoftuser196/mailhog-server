@@ -67,7 +67,7 @@ fi
 
 printf "%s:%s\n" "$USERNAME" "$HASH" >> "$TMP_FILE"
 mv "$TMP_FILE" "$USERS_FILE"
-chmod 600 "$USERS_FILE"
+chmod 644 "$USERS_FILE"
 
 echo "User '$USERNAME' added/updated in $USERS_FILE"
 echo "Restart MailHog to apply changes: docker compose up -d"
