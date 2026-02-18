@@ -1,0 +1,4 @@
+.env
+auth/users
+data/maildir/*
+!data/maildir/.gitkeep

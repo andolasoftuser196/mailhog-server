@@ -1,0 +1,18 @@
+services:
+  mailhog:
+    image: mailhog/mailhog:v1.0.1
+    container_name: mailhog-server
+    restart: unless-stopped
+    environment:
+      - MH_AUTH_FILE=/mailhog-auth/users
+      - MH_STORAGE=${MH_STORAGE:-maildir}
+      - MH_MAILDIR_PATH=/mailhog-data/maildir
+      - MH_SMTP_BIND_ADDR=0.0.0.0:1025
+      - MH_UI_BIND_ADDR=0.0.0.0:8025
+      - MH_API_BIND_ADDR=0.0.0.0:8025
+    ports:
+      - "127.0.0.1:${MAILHOG_SMTP_PORT:-1025}:1025"
+      - "127.0.0.1:${MAILHOG_WEB_PORT:-8025}:8025"
+    volumes:
+      - ./auth:/mailhog-auth:ro
+      - ./data:/mailhog-data
